@@ -1,6 +1,7 @@
 import React from 'react';
 import { Leaf, ShieldCheck, Lock, PhoneCall, Zap, HeartPulse, MessageCircle } from 'lucide-react';
 import heroImg from '../assets/267aadc9670f30ef0f1dd141d69d99164c2da01e.png';
+import heroImg2 from '../assets/2.jpeg';
 
 const App = () => {
     return (
@@ -33,14 +34,21 @@ const App = () => {
 const Hero = () => (
     <section className="px-5 pt-6 md:pt-20 pb-10 md:pb-16 flex flex-col md:flex-row items-center text-center md:text-left relative md:gap-12 lg:gap-20">
         
-        {/* Product Image: First on Mobile, Right on Desktop */}
+        {/* Product Images: First on Mobile, Right on Desktop */}
         <div className="order-1 md:order-2 relative w-full max-w-[280px] md:max-w-[420px] lg:max-w-[500px] mx-auto mb-6 md:mb-0 flex-1">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-amber-600/10 blur-2xl rounded-full pointer-events-none" />
-            <img 
-                src={heroImg} 
-                alt="Wild Capsule and Power Oil" 
-                className="relative z-10 w-full h-auto drop-shadow-2xl object-contain md:-translate-x-4 lg:-translate-x-8"
-            />
+            <div className="relative z-10 flex gap-3 md:gap-4 items-center justify-center">
+                <img 
+                    src={heroImg} 
+                    alt="Wild Capsule and Power Oil" 
+                    className="w-[48%] h-auto drop-shadow-2xl object-contain"
+                />
+                <img 
+                    src={heroImg2} 
+                    alt="Wild Capsule and Power Oil" 
+                    className="w-[48%] h-auto drop-shadow-2xl object-contain"
+                />
+            </div>
         </div>
 
         {/* Text Content: Second on Mobile, Left on Desktop */}
@@ -147,7 +155,7 @@ const FinalCTA = () => (
                     <MessageCircle className="w-6 h-6 md:w-5 md:h-5" /> WhatsApp Us
                 </button>
                 <button className="w-full md:w-[260px] h-14 md:h-16 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl md:rounded-lg flex items-center justify-center gap-2 text-[17px] md:text-[18px] border border-neutral-700 active:scale-[0.98] transition-transform">
-                    <PhoneCall className="w-5 h-5" /> Call: 81785 11023
+                    <PhoneCall className="w-5 h-5" /> Call: +91 96281 56190
                 </button>
             </div>
             
@@ -160,10 +168,10 @@ const FinalCTA = () => (
 
 const StickyMobileBar = () => (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050505] border-t border-neutral-800/80 p-3 flex gap-3 pb-safe sm:pb-3 shadow-[0_-10px_40px_rgba(0,0,0,0.8)] mx-auto w-full max-w-lg">
-        <a href="tel:+918178511023" className="flex-1 h-12 bg-neutral-800 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] border border-neutral-700">
+        <a href="tel:+919628156190" className="flex-1 h-12 bg-neutral-800 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] border border-neutral-700">
             <PhoneCall className="w-4 h-4" /> Call Now
         </a>
-        <a href="https://wa.me/918178511023" target="_blank" rel="noreferrer" className="flex-1 h-12 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] shadow-[0_4px_12px_rgba(217,119,6,0.3)]">
+        <a href="https://wa.me/919628156190" target="_blank" rel="noreferrer" className="flex-1 h-12 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] shadow-[0_4px_12px_rgba(217,119,6,0.3)]">
             <MessageCircle className="w-4 h-4" /> WhatsApp
         </a>
     </div>
