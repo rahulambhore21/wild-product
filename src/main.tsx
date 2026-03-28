@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import App from "./app/App.tsx";
 import { AuthProvider } from "./components/auth/AuthContext.tsx";
 import Login from "./components/auth/Login.tsx";
@@ -8,7 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute.tsx";
 import "./styles/index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <HashRouter>
     <AuthProvider>
       <Routes>
         <Route path="/" element={<App />} />
@@ -23,5 +23,5 @@ createRoot(document.getElementById("root")!).render(
         />
       </Routes>
     </AuthProvider>
-  </BrowserRouter>
+  </HashRouter>
 );
