@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Leaf, ShieldCheck, Lock, PhoneCall, Zap, HeartPulse, MessageCircle, CheckCircle, Loader2 } from 'lucide-react';
-import axios from 'axios';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../config/firebase';
 import heroImg from '../assets/267aadc9670f30ef0f1dd141d69d99164c2da01e.png';
 import heroImg2 from '../assets/2.jpeg';
 
@@ -157,21 +158,22 @@ const ContactForm = () => {
         setError('');
 
         try {
-            // Replace with your actual API endpoint URL
-            const response = await axios.post('https://shreepackways-smtp.vercel.app/api/contact-consultation', formData);
-            
-            if (response.data.success) {
-                setShowThankYou(true);
-                // Reset form
-                setFormData({
-                    name: '',
-                    phone: '',
-                    city: '',
-                    contactMethod: 'whatsapp'
-                });
-            }
+            // Add lead to Firestore
+            await addDoc(collection(db, 'leads'), {
+                ...formData,
+                timestamp: serverTimestamp(),
+            });
+
+            setShowThankYou(true);
+            // Reset form
+            setFormData({
+                name: '',
+                phone: '',
+                city: '',
+                contactMethod: 'whatsapp'
+            });
         } catch (err: any) {
-            setError(err.response?.data?.details || 'Failed to submit. Please try again.');
+            setError('Failed to submit. Please try again.');
             console.error('Form submission error:', err);
         } finally {
             setIsSubmitting(false);
