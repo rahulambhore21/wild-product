@@ -69,7 +69,9 @@ const Hero = () => (
                 <span className="hidden md:inline"> Bina kisi side-effect ke, 100% privacy ke saath.</span>
             </p>
             
-            <button className="w-full md:w-auto md:px-14 h-14 md:h-16 bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold rounded-xl md:rounded-lg text-[17px] md:text-[19px] shadow-[0_4px_20px_rgba(217,119,6,0.25)] transition-transform active:scale-[0.98] flex items-center justify-center">
+            <button
+                onClick={() => window.open('https://wa.me/919628156190?text=Hi%20I%20am%20interested%20in%20Wild%20Capsule%20and%20Power%20Oil', '_blank')}
+                className="w-full md:w-auto md:px-14 h-14 md:h-16 bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold rounded-xl md:rounded-lg text-[17px] md:text-[19px] shadow-[0_4px_20px_rgba(217,119,6,0.25)] transition-transform active:scale-[0.98] flex items-center justify-center cursor-pointer">
                 Order Now
             </button>
             
@@ -384,10 +386,14 @@ const FinalCTA = () => (
             </p>
 
             <div className="relative z-10 flex flex-col md:flex-row gap-3 md:gap-5 w-full md:justify-center">
-                <button className="w-full md:w-[260px] h-14 md:h-16 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-xl md:rounded-lg flex items-center justify-center gap-2 text-[17px] md:text-[18px] active:scale-[0.98] transition-transform">
+                <button
+                    onClick={() => window.open('https://wa.me/919628156190?text=Hi%20I%20am%20interested%20in%20Wild%20Capsule%20and%20Power%20Oil', '_blank')}
+                    className="w-full md:w-[260px] h-14 md:h-16 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-xl md:rounded-lg flex items-center justify-center gap-2 text-[17px] md:text-[18px] active:scale-[0.98] transition-transform cursor-pointer">
                     <MessageCircle className="w-6 h-6 md:w-5 md:h-5" /> WhatsApp Us
                 </button>
-                <button className="w-full md:w-[260px] h-14 md:h-16 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl md:rounded-lg flex items-center justify-center gap-2 text-[17px] md:text-[18px] border border-neutral-700 active:scale-[0.98] transition-transform">
+                <button
+                    onClick={() => window.location.href = 'tel:+919628156190'}
+                    className="w-full md:w-[260px] h-14 md:h-16 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl md:rounded-lg flex items-center justify-center gap-2 text-[17px] md:text-[18px] border border-neutral-700 active:scale-[0.98] transition-transform cursor-pointer">
                     <PhoneCall className="w-5 h-5" /> Call: +91 96281 56190
                 </button>
             </div>
