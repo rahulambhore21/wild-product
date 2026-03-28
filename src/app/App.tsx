@@ -70,7 +70,7 @@ const Hero = () => (
             </p>
             
             <button
-                onClick={() => window.open('https://wa.me/919628156190?text=Hi%20I%20am%20interested%20in%20Wild%20Capsule%20and%20Power%20Oil', '_blank')}
+                onClick={() => window.open('https://wa.me/919643338004?text=Hi%20I%20am%20interested%20in%20Wild%20Capsule%20and%20Power%20Oil', '_blank')}
                 className="w-full md:w-auto md:px-14 h-14 md:h-16 bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold rounded-xl md:rounded-lg text-[17px] md:text-[19px] shadow-[0_4px_20px_rgba(217,119,6,0.25)] transition-transform active:scale-[0.98] flex items-center justify-center cursor-pointer">
                 Order Now
             </button>
@@ -387,14 +387,14 @@ const FinalCTA = () => (
 
             <div className="relative z-10 flex flex-col md:flex-row gap-3 md:gap-5 w-full md:justify-center">
                 <button
-                    onClick={() => window.open('https://wa.me/919628156190?text=Hi%20I%20am%20interested%20in%20Wild%20Capsule%20and%20Power%20Oil', '_blank')}
+                    onClick={() => window.open('https://wa.me/919643338004?text=Hi%20I%20am%20interested%20in%20Wild%20Capsule%20and%20Power%20Oil', '_blank')}
                     className="w-full md:w-[260px] h-14 md:h-16 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-xl md:rounded-lg flex items-center justify-center gap-2 text-[17px] md:text-[18px] active:scale-[0.98] transition-transform cursor-pointer">
                     <MessageCircle className="w-6 h-6 md:w-5 md:h-5" /> WhatsApp Us
                 </button>
                 <button
-                    onClick={() => window.location.href = 'tel:+919628156190'}
+                    onClick={() => window.location.href = 'tel:+919643338004'}
                     className="w-full md:w-[260px] h-14 md:h-16 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl md:rounded-lg flex items-center justify-center gap-2 text-[17px] md:text-[18px] border border-neutral-700 active:scale-[0.98] transition-transform cursor-pointer">
-                    <PhoneCall className="w-5 h-5" /> Call: +91 96281 56190
+                    <PhoneCall className="w-5 h-5" /> Call: +91 96433 38004
                 </button>
             </div>
             
@@ -407,10 +407,10 @@ const FinalCTA = () => (
 
 const StickyMobileBar = () => (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050505] border-t border-neutral-800/80 p-3 flex gap-3 pb-safe sm:pb-3 shadow-[0_-10px_40px_rgba(0,0,0,0.8)] mx-auto w-full max-w-lg">
-        <a href="tel:+919628156190" className="flex-1 h-12 bg-neutral-800 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] border border-neutral-700">
+        <a href="tel:+919643338004" className="flex-1 h-12 bg-neutral-800 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] border border-neutral-700">
             <PhoneCall className="w-4 h-4" /> Call Now
         </a>
-        <a href="https://wa.me/919628156190" target="_blank" rel="noreferrer" className="flex-1 h-12 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] shadow-[0_4px_12px_rgba(217,119,6,0.3)]">
+        <a href="https://wa.me/919643338004" target="_blank" rel="noreferrer" className="flex-1 h-12 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-transform active:scale-[0.96] text-[15px] shadow-[0_4px_12px_rgba(217,119,6,0.3)]">
             <MessageCircle className="w-4 h-4" /> WhatsApp
         </a>
     </div>
