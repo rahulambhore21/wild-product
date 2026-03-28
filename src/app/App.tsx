@@ -1,5 +1,6 @@
-import React from 'react';
-import { Leaf, ShieldCheck, Lock, PhoneCall, Zap, HeartPulse, MessageCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { Leaf, ShieldCheck, Lock, PhoneCall, Zap, HeartPulse, MessageCircle, CheckCircle, Loader2 } from 'lucide-react';
+import axios from 'axios';
 import heroImg from '../assets/267aadc9670f30ef0f1dd141d69d99164c2da01e.png';
 import heroImg2 from '../assets/2.jpeg';
 
@@ -23,6 +24,7 @@ const App = () => {
                 <Hero />
                 <ProblemSolution />
                 <Benefits />
+                <ContactForm />
                 <FinalCTA />
             </main>
 
@@ -134,6 +136,237 @@ const Benefits = () => (
         </div>
     </section>
 );
+
+const ContactForm = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        city: '',
+        contactMethod: 'whatsapp'
+    });
+    
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showThankYou, setShowThankYou] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setError('');
+
+        try {
+            // Replace with your actual API endpoint URL
+            const response = await axios.post('https://shreepackways-smtp.vercel.app/api/contact-consultation', formData);
+            
+            if (response.data.success) {
+                setShowThankYou(true);
+                // Reset form
+                setFormData({
+                    name: '',
+                    phone: '',
+                    city: '',
+                    contactMethod: 'whatsapp'
+                });
+            }
+        } catch (err: any) {
+            setError(err.response?.data?.details || 'Failed to submit. Please try again.');
+            console.error('Form submission error:', err);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const closeThankYou = () => {
+        setShowThankYou(false);
+    };
+
+    return (
+        <>
+            <section className="px-5 py-10 md:py-20">
+                <div className="max-w-md mx-auto">
+                    {/* Form Card */}
+                    <div className="bg-[#0a0a0a] rounded-2xl md:rounded-3xl p-6 md:p-10 border border-neutral-800/60 shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+                        
+                        {/* Section Heading */}
+                        <div className="text-center mb-8 md:mb-10">
+                            <h2 className="text-[26px] md:text-[36px] font-bold text-white mb-3" style={{ fontFamily: "'Cinzel', serif" }}>
+                                Get Private Consultation
+                            </h2>
+                            <p className="text-[14px] md:text-[15px] text-neutral-400 flex items-center justify-center gap-2">
+                                <Lock className="w-4 h-4 text-amber-500/80" />
+                                Your details are 100% confidential
+                            </p>
+                        </div>
+
+                        {/* Error Message */}
+                        {error && (
+                            <div className="mb-5 p-4 bg-red-900/20 border border-red-700/50 rounded-xl text-red-400 text-[14px] text-center">
+                                {error}
+                            </div>
+                        )}
+
+                        {/* Form */}
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            
+                            {/* Name Input */}
+                            <div>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="Enter your name"
+                                    required
+                                    disabled={isSubmitting}
+                                    className="w-full h-[52px] md:h-[56px] bg-[#050505] border border-neutral-700 rounded-xl px-5 text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-600/50 focus:ring-1 focus:ring-amber-600/30 transition-all text-[15px] md:text-[16px] disabled:opacity-50 disabled:cursor-not-allowed"
+                                />
+                            </div>
+
+                            {/* Phone Input */}
+                            <div>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    placeholder="Enter your mobile number"
+                                    required
+                                    pattern="[0-9]{10}"
+                                    disabled={isSubmitting}
+                                    className="w-full h-[52px] md:h-[56px] bg-[#050505] border border-neutral-700 rounded-xl px-5 text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-600/50 focus:ring-1 focus:ring-amber-600/30 transition-all text-[15px] md:text-[16px] disabled:opacity-50 disabled:cursor-not-allowed"
+                                />
+                            </div>
+
+                            {/* City Input (Optional) */}
+                            <div>
+                                <input
+                                    type="text"
+                                    name="city"
+                                    value={formData.city}
+                                    onChange={handleChange}
+                                    placeholder="Your city"
+                                    disabled={isSubmitting}
+                                    className="w-full h-[52px] md:h-[56px] bg-[#050505] border border-neutral-700 rounded-xl px-5 text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-600/50 focus:ring-1 focus:ring-amber-600/30 transition-all text-[15px] md:text-[16px] disabled:opacity-50 disabled:cursor-not-allowed"
+                                />
+                            </div>
+
+                            {/* Preferred Contact Method */}
+                            <div>
+                                <p className="text-neutral-300 text-[14px] md:text-[15px] mb-3 font-medium">Preferred Contact</p>
+                                <div className="flex gap-3">
+                                    <label className="flex-1 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="contactMethod"
+                                            value="call"
+                                            checked={formData.contactMethod === 'call'}
+                                            onChange={handleChange}
+                                            disabled={isSubmitting}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="h-[48px] bg-[#050505] border border-neutral-700 rounded-xl flex items-center justify-center gap-2 text-neutral-400 peer-checked:border-amber-600 peer-checked:bg-amber-600/10 peer-checked:text-amber-500 transition-all text-[15px] font-medium peer-disabled:opacity-50 peer-disabled:cursor-not-allowed">
+                                            <PhoneCall className="w-4 h-4" />
+                                            Call
+                                        </div>
+                                    </label>
+                                    <label className="flex-1 cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="contactMethod"
+                                            value="whatsapp"
+                                            checked={formData.contactMethod === 'whatsapp'}
+                                            onChange={handleChange}
+                                            disabled={isSubmitting}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="h-[48px] bg-[#050505] border border-neutral-700 rounded-xl flex items-center justify-center gap-2 text-neutral-400 peer-checked:border-amber-600 peer-checked:bg-amber-600/10 peer-checked:text-amber-500 transition-all text-[15px] font-medium peer-disabled:opacity-50 peer-disabled:cursor-not-allowed">
+                                            <MessageCircle className="w-4 h-4" />
+                                            WhatsApp
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            {/* Submit Button */}
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full h-[56px] md:h-[60px] bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold rounded-xl text-[17px] md:text-[18px] shadow-[0_6px_24px_rgba(217,119,6,0.3)] transition-all active:scale-[0.98] mt-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 flex items-center justify-center gap-2"
+                            >
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        Submitting...
+                                    </>
+                                ) : (
+                                    'Request Call Now'
+                                )}
+                            </button>
+
+                            {/* Trust Line */}
+                            <div className="text-center pt-2">
+                                <p className="text-[12px] md:text-[13px] text-neutral-500 flex items-center justify-center gap-2 flex-wrap">
+                                    <span className="flex items-center gap-1">
+                                        <Lock className="w-3 h-3 text-neutral-400" />
+                                        100% Private
+                                    </span>
+                                    <span>•</span>
+                                    <span>No spam</span>
+                                    <span>•</span>
+                                    <span>Discreet support</span>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            {/* Thank You Modal */}
+            {showThankYou && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-black/80 backdrop-blur-sm">
+                    <div className="bg-[#0a0a0a] border border-neutral-800/60 rounded-2xl md:rounded-3xl p-8 md:p-12 max-w-md w-full shadow-[0_20px_60px_rgba(0,0,0,0.6)] animate-in fade-in zoom-in duration-300">
+                        
+                        {/* Success Icon */}
+                        <div className="flex justify-center mb-6">
+                            <div className="w-16 h-16 md:w-20 md:h-20 bg-green-600/20 rounded-full flex items-center justify-center">
+                                <CheckCircle className="w-10 h-10 md:w-12 md:h-12 text-green-500" />
+                            </div>
+                        </div>
+
+                        {/* Thank You Message */}
+                        <h3 className="text-[24px] md:text-[32px] font-bold text-white text-center mb-4" style={{ fontFamily: "'Cinzel', serif" }}>
+                            Request Received!
+                        </h3>
+                        
+                        <p className="text-[15px] md:text-[16px] text-neutral-300 text-center mb-3 leading-relaxed">
+                            Thank you for reaching out. Our team will contact you shortly for a private consultation.
+                        </p>
+
+                        <p className="text-[13px] md:text-[14px] text-neutral-400 text-center mb-8">
+                            <Lock className="w-4 h-4 text-amber-500/80 inline mr-1" />
+                            Your information is completely confidential
+                        </p>
+
+                        {/* Close Button */}
+                        <button
+                            onClick={closeThankYou}
+                            className="w-full h-[52px] md:h-[56px] bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 text-white font-bold rounded-xl text-[16px] md:text-[17px] shadow-[0_6px_24px_rgba(217,119,6,0.3)] transition-all active:scale-[0.98]"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
+        </>
+    );
+};
 
 const FinalCTA = () => (
     <section className="px-5 py-10 md:py-24 mb-8 md:mb-16 text-center bg-[#0a0a0a] md:bg-transparent border-y md:border-none border-neutral-900">
